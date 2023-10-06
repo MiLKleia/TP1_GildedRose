@@ -2,16 +2,27 @@ package com.gildedrose;
 
 public class Item {
 
-    public String name;
+    private String name;
 
-    public int sellIn;
+    private int sellIn;
 
-    public int quality;
+    private int quality;
+
+    private String[] contained_cases = {"Conjured", "Backstage passes"};
+ 
 
     public void updateItem(){
         
+        String Switch_test_name = name;
 
-        switch(name){
+        int i;
+        for(i = 0; i < contained_cases.length; i++) 
+        if(name.contains(contained_cases[i])){
+            Switch_test_name = contained_cases[i];   
+            break; 
+        } 
+
+        switch(Switch_test_name){
 
                 default :
                     quality +=(-1);
@@ -20,9 +31,14 @@ public class Item {
                     } 
                     break;
 
-                
+                case "Conjured":
+                    quality +=(-2);
+                    if (sellIn == 0){
+                            quality +=(-2);
+                        } 
+                    break; 
 
-                case "Backstage passes to a TAFKAL80ETC concert":
+                case "Backstage passes":
                         quality ++;
                     if (sellIn == 0){
                         quality = 0;
@@ -50,14 +66,8 @@ public class Item {
         quality = Math.max(0,Math.min(50, (quality)));
     
     }
-
-
-
-
-
-
-
-
+        
+    
     public Item(String name, int sellIn, int quality) {
         this.name = name;
         this.sellIn =  Math.max(0, sellIn );
