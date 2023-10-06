@@ -60,8 +60,8 @@ public class Item {
 
     public Item(String name, int sellIn, int quality) {
         this.name = name;
-        this.sellIn = sellIn;
-        this.quality = quality;
+        this.sellIn =  Math.max(0, sellIn );
+        this.quality = Math.min(50, Math.max(0, quality));
     }
 
    @Override
